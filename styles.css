@@ -14,7 +14,7 @@ h1 {
     border: 5px solid black;
     display:table;
     justify-content: center;
-    margin: auto;
+    margin: 100px auto;
     padding: 5px 5px 5px 5px;
     height: 500px;
     border-radius: 5px;
