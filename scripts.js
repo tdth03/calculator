@@ -61,6 +61,17 @@ function storeValues(operator) {
     needsReset = true;
 }
 
+  /*Takes keyboard/numpad input and returns same results as clicking each button. */
+
+  function keyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9) parseFloat(printNum(e.key));
+    if (e.key === ".") placeDecimal();
+    if (e.key === "=") evaluate();
+    if (e.key === "Escape") clearScreen();
+    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+      storeValues(e.key);
+}
+
 /* Clearing/Resetting the Screen */
 
 function clearScreen() {
@@ -111,6 +122,10 @@ function operate(operator, num1, num2) {
 }
 
 function evaluate() {
+    if (evaluation === "") {
+    firstValue = calcScreen.textContent;
+    return firstValue;
+    } else
     secondValue = parseFloat(calcScreen.textContent);
     console.log(firstValue);
     console.log(secondValue);
@@ -127,22 +142,4 @@ function evaluate() {
 /* Round Result */
 function roundResult(number) {
     return Math.round(number * 1000) / 1000;
-  }
-
-  /*Takes keyboard/numpad input and returns same results as clicking each button. */
-
-  function keyboardInput(e) {
-      if (e.key >= 0 && e.key <= 9) printNum(e.key);
-      if (e.key === ".") placeDecimal();
-      if (e.key === "=" || e.key === "Enter") evaluate();
-      if (e.key === "Escape") clearScreen();
-      if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
-        storeValues(storeOperator(e.key));
-  }
-
-  function storeOperator(keyboardOperator) {
-    if (keyboardOperator === "/") return "/";
-    if (keyboardOperator === "*") return "*";
-    if (keyboardOperator === "-") return "-";
-    if (keyboardOperator === "+") return "+";
   }
