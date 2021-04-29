@@ -3,18 +3,12 @@ body {
     font-family: 'Krona One', sans-serif;
 }
 
-h1 {
-    font-size: 80px!important;
-    text-align: center;
-    font-family: 'Krona One', sans-serif;
-}
-
 #calc-body {
     background-color: rgb(119, 122, 122);
     border: 5px solid black;
     display:table;
     justify-content: center;
-    margin: 100px auto;
+    margin: 200px auto;
     padding: 5px 5px 5px 5px;
     height: 500px;
     border-radius: 5px;
@@ -22,19 +16,21 @@ h1 {
 
 #input {
     width: 400px;
-    height: 166px;
+    min-height: 166px;
     background-color: rgb(217, 228, 230);
     margin-top: 5px;
     margin-bottom: 5px;
+    text-align: right;
     display:flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: flex-end;
     font-family: 'Krona One', sans-serif;
-    font-size: 3.5em;
+    font-size: 3em;
     justify-items: right;
     border: 1px solid black;
     border-radius: 5px;
+    word-wrap: break-word;
+    word-break: break-all;
     
 }
 

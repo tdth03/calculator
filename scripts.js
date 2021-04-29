@@ -3,7 +3,7 @@ const operatorBtns = document.querySelectorAll("[data-operator]");
 const clearBtn = document.querySelector("[data-clear]");
 const equalBtn = document.querySelector("[data-equals]");
 const decimalBtn = document.querySelector("[data-point]");
-
+const screenDiv = document.querySelector("[data-screen]");
 const calcScreen = document.querySelector("[data-input]");
 
 let firstValue = "0";
@@ -29,6 +29,8 @@ equalBtn.addEventListener("click", () => evaluate());
 
 decimalBtn.addEventListener("click", () => placeDecimal());
 
+window.addEventListener("keydown", keyboardInput);
+
 /* Print the clicked number on the display screen in succession. */
 
 function printNum(num) {
@@ -46,9 +48,16 @@ function placeDecimal() {
 /* Evaluates the function based on user input. Signals to reset the screen for next user input. */
 
 function storeValues(operator) {
-    if (firstValue === "" )
+    if (firstValue === "" || evaluation === "" ) {
     firstValue = parseFloat(calcScreen.textContent);
     evaluation = operator;
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(evaluation);
+    } else if (firstValue !== "") {
+        evaluate();
+        evaluation = operator;
+    }
     needsReset = true;
 }
 
@@ -103,6 +112,9 @@ function operate(operator, num1, num2) {
 
 function evaluate() {
     secondValue = parseFloat(calcScreen.textContent);
+    console.log(firstValue);
+    console.log(secondValue);
+    console.log(evaluation);
     calcScreen.textContent = roundResult(
         operate(evaluation, firstValue, secondValue)
         );
@@ -115,4 +127,22 @@ function evaluate() {
 /* Round Result */
 function roundResult(number) {
     return Math.round(number * 1000) / 1000;
+  }
+
+  /*Takes keyboard/numpad input and returns same results as clicking each button. */
+
+  function keyboardInput(e) {
+      if (e.key >= 0 && e.key <= 9) printNum(e.key);
+      if (e.key === ".") placeDecimal();
+      if (e.key === "=" || e.key === "Enter") evaluate();
+      if (e.key === "Escape") clearScreen();
+      if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+        storeValues(storeOperator(e.key));
+  }
+
+  function storeOperator(keyboardOperator) {
+    if (keyboardOperator === "/") return "/";
+    if (keyboardOperator === "*") return "*";
+    if (keyboardOperator === "-") return "-";
+    if (keyboardOperator === "+") return "+";
   }
