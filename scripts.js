@@ -110,7 +110,7 @@ function divideNumbers(a, b) {
 /* Function to choose the correct math function based on user input. */
 
 function operate(operator, num1, num2) {
-    if (operator === "+" ) {
+    if (operator === "+") {
         return addNumbers(num1, num2);
     } else if (operator === "-") {
         return subtractNumbers(num1, num2);
