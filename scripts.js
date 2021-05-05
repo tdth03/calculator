@@ -69,8 +69,12 @@ function storeValues(operator) {
             break;
 
         case "=":
-        case "Enter":
         case "equals":
+            evaluate();
+            break;
+
+        case "Enter":
+            e.preventDefault();
             evaluate();
             break;
 

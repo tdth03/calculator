@@ -66,7 +66,11 @@ button:active {
     outline-style: solid;
 }
 
-.clear-btn:active, .equals-btn:active {
+.clear-btn {
+    background-color: rgb(212, 188, 1);
+}
+
+.clear-btn:focus, .equals-btn:focus {
     outline:rgb(212, 188, 1);
     outline-style: solid;
 }
@@ -85,9 +89,7 @@ button:active {
     background-color: rgb(167, 3, 3);
 }
 
-#reset-input {
-    background-color: rgb(212, 188, 1);
-}
+
 
 #zero {
     grid-column: 1 / 3;
