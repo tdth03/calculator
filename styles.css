@@ -70,7 +70,7 @@ button:active {
     background-color: rgb(212, 188, 1);
 }
 
-.clear-btn:focus, .equals-btn:focus {
+.clear-btn:active, .equals-btn:active {
     outline:rgb(212, 188, 1);
     outline-style: solid;
 }
