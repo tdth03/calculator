@@ -61,7 +61,12 @@ button:active {
     transform: translateY(1px);
   }
 
-.btn:focus {
+.btn:focus, .event-btn:focus {
+    outline:rgb(212, 188, 1);
+    outline-style: solid;
+}
+
+.clear-btn:active, .equals-btn:active {
     outline:rgb(212, 188, 1);
     outline-style: solid;
 }

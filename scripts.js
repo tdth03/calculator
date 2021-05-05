@@ -7,7 +7,7 @@ const decimalBtn = document.querySelector("[data-point]");
 const screenDiv = document.querySelector("[data-screen]");
 const calcScreen = document.querySelector("[data-input]");
 
-let firstValue = "0";
+let firstValue;
 let secondValue = "";
 let evaluation = "";
 let needsReset = false;
@@ -16,23 +16,21 @@ window.addEventListener("load", clearScreen())
 
 /* Click Event Listeners for each number, operator, and clear button. */
 
-/* numberBtns.forEach((button) =>
+numberBtns.forEach((button) =>
     button.addEventListener("click", () => printNum(button.textContent))
 );
 
 operatorBtns.forEach((button) =>
     button.addEventListener("click", () => storeValues(button.textContent))
-); */
+);
 
 clearBtn.addEventListener("click", () => clearScreen());
 
-/* equalBtn.addEventListener("click", () => evaluate()); */
-
-buttons.forEach(button => keyboardInput(button));
+equalBtn.addEventListener("click", () => evaluate());
 
 decimalBtn.addEventListener("click", () => placeDecimal());
 
-window.addEventListener("keydown", keyboardInput);
+window.addEventListener("keydown", keypadInput);
 
 /* Print the clicked number on the display screen in succession. */
 
@@ -62,23 +60,59 @@ function storeValues(operator) {
 
   /*Takes keyboard/numpad input and returns same results as clicking each button. */
 
-  function keyboardInput(e) {
-    if (e.key >= 0 && e.key <= 9) printNum(e.key);
-    if (e.key === ".") placeDecimal();
-    if (e.key === "=" || e.key === "Enter") evaluate();
-    if (e.key === "Escape") clearScreen();
-    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
-      storeValues(e.key);
-      console.log(e.key);
+  function keypadInput(e) {
+    switch (e.key){
+
+        case ".":
+        case "decimal":
+            placeDecimal();
+            break;
+
+        case "=":
+        case "Enter":
+        case "equals":
+            evaluate();
+            break;
+
+        case "+":
+        case "plus":
+        case "-":
+        case "minus":
+        case "/":
+        case "divide":
+        case "*":
+        case "times":
+            storeValues(e.key);
+            break;
+
+        case "0":
+        case "zero":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+            printNum(e.key);
+            break;
+        
+        case "Escape":
+        case "Esc":
+        case "clear":
+            clearScreen();
+    }
 }
 
 /* Clearing/Resetting the Screen */
 
 function clearScreen() {
-    calcScreen.textContent="0";
-    firstValue = "";
+    firstValue = "0";
     secondValue = "";
     evaluation = "";
+    calcScreen.textContent = firstValue;
 }
 
 function resetScreen() {
