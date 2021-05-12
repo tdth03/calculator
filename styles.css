@@ -70,18 +70,36 @@ button:active {
     background-color: rgb(212, 188, 1);
 }
 
+.delete-btn {
+    background-color: rgb(202, 82, 2);
+}
+
 .clear-btn:active, .equals-btn:active {
     outline:rgb(212, 188, 1);
     outline-style: solid;
 }
 
-#plus, #equals {
+.playing {
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+  }
+
+#equals {
     height: auto;
     grid-column: 4;
 }
 
-#plus {
-    grid-row: 2 / 4;
+#minus, #plus {
+    grid-column: 4;
+}
+
+#seven, #eight, #nine {
+    grid-row: 2;
+}
+
+#four, #five, #six {
+    grid-row: 3;
 }
 
 #equals {

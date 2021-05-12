@@ -7,6 +7,7 @@ const operatorBtns = document.querySelectorAll("[data-operator]");
 const clearBtn = document.querySelector("[data-clear]");
 const equalBtn = document.querySelector("[data-equals]");
 const decimalBtn = document.querySelector("[data-point]");
+const deleteBtn = document.querySelector("[data-delete]");
 const screenDiv = document.querySelector("[data-screen]");
 const calcScreen = document.querySelector("[data-input]");
 
@@ -28,6 +29,8 @@ operatorBtns.forEach((button) =>
 );
 
 clearBtn.addEventListener("click", () => clearScreen());
+
+deleteBtn.addEventListener("click", () => deleteNum());
 
 equalBtn.addEventListener("click", () => evaluate());
 
@@ -131,7 +134,11 @@ function storeValues(operator) {
 /* Deleting last number printed */
 
 function deleteNum() {
-    calcScreen.textContent = calcScreen.textContent.toString().slice(0, -1);
+    if (calcScreen.textContent.length === 1) {
+        calcScreen.textContent = "0";
+    } else if (calcScreen.textContent !== "0") {
+        calcScreen.textContent = calcScreen.textContent.toString().slice(0, -1);
+    }
 }
 
 /* Clearing/Resetting the Screen */
