@@ -1,4 +1,7 @@
 const buttons = document.querySelectorAll("button");
+/* buttons.forEach(button => button.addEventListener('transitionend', removeOutline));
+window.addEventListener("keydown", addOutline); */
+
 const numberBtns = document.querySelectorAll("[data-number]");
 const operatorBtns = document.querySelectorAll("[data-operator]");
 const clearBtn = document.querySelector("[data-clear]");
@@ -45,6 +48,17 @@ function placeDecimal() {
     if (calcScreen.textContent.includes(".")) return;
     calcScreen.textContent += ".";
 }
+
+/* function removeOutline(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+}
+
+function addOutline(e) {
+    const nBtn = document.querySelector(`div[id="${e.key}]`);
+
+    nBtn.classList.add('playing');
+} */
 
 /* Evaluates the function based on user input. Signals to reset the screen for next user input. */
 
@@ -103,11 +117,21 @@ function storeValues(operator) {
             printNum(e.key);
             break;
         
+        case "Backspace":
+            deleteNum();
+            break;
+
         case "Escape":
         case "Esc":
         case "clear":
             clearScreen();
     }
+}
+
+/* Deleting last number printed */
+
+function deleteNum() {
+    calcScreen.textContent = calcScreen.textContent.toString().slice(0, -1);
 }
 
 /* Clearing/Resetting the Screen */
